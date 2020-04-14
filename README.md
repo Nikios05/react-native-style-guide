@@ -164,16 +164,20 @@ item: {
 ```ts
 <Checkbox 
 	...
-	checkedColor={ 'rgba(30, 144, 255, 16)' }
+	checkedColor={ 'rgba(30, 144, 255, 0.16)' }
 	...
 />
 ```
 
 **Good:**
 ```ts
+PRIMARY_RGB: '(30, 144, 255)',
+```
+
+```ts
 <Checkbox 
 	...
-	checkedColor={ 'rgba(30, 144, 255, 16)' }
+	checkedColor={ getOpacityColor(COLORS.PRIMARY_RGB, 0.16) }
 	...
 />
 ```
