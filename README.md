@@ -91,8 +91,9 @@ const text = 'Текстовое значение'
 ## Naming
 
 ### Называте селекторы правильно
-Все селекторы для стилизации элементов имеют стиль написания CamelCase и могут состоять из нескольких слов в зависимости от назначения, система схожая с БЭМ и имеет несколько правил составления имени.
-1. Селектор может состоянить из имени блока, имени элемента и имени модификатора. Пример: answerItemPadding
+Все селекторы для стилизации элементов имеют стиль написания совмещающий camelCase и snake__case, с двойным подчеркиванием. Названия классов могут состоять из нескольких слов в зависимости от назначения, система схожая с БЭМ и имеет несколько правил составления имени.
+1. Селектор может состоянить из имени блока, имени элемента и имени модификатора. Пример: answerCard__item__padding
+2. Каждая сущность имени разделена по snake__case с двойным подчеркиванием, а слова внутри сущности используют camelCase. Такой подход позволяет визуально разделить БЭМ сущности.
 2. По возможности стоит сотавлять имя селектора короче, и для блока, элемента или модификатора использовать одно слово.
 3. Имя селектора непосредствнено должно говорить о чем этот блок или элемент.
 
@@ -108,9 +109,9 @@ const text = 'Текстовое значение'
 **Good:**
 ```ts
 <View style={styles.answerHeader}>
-	<Icon style={[styles.answeriIcon, styles.answeriIconLeft]} />
-	<Text style={styles.answerTitle}>Title</Text>
-	<Icon style={[styles.answeriIcon, styles.answeriIconRight]} />
+	<Icon style={[styles.answerHeader__icon, styles.answerHeader__icon__left]} />
+	<Text style={styles.answerHeader__title}>Title</Text>
+	<Icon style={[styles.answerHeader__icon, styles.answerHeader__icon__right]} />
 </View>
 ```
 
@@ -158,7 +159,7 @@ item: {
 ```
 
 ### Opacity color
-Если цвет нельзя реализовать через свойство opacity, но альфа канал необходим, можно использовать хелпер getOpacityColor.
+Если цвет нельзя реализовать через свойство opacity, но альфа канал необходим, можно использовать хелпер c переводом из hex в rgba - convertHexToRGBA(hex, opacity).
 
 **Bad:**
 ```ts
@@ -171,13 +172,13 @@ item: {
 
 **Good:**
 ```ts
-PRIMARY_RGB: '(30, 144, 255)',
+PRIMARY: '#1071FF',
 ```
 
 ```ts
 <Checkbox 
 	...
-	checkedColor={ getOpacityColor(COLORS.PRIMARY_RGB, 0.16) }
+	checkedColor={ convertHexToRGBA(COLORS.PRIMARY, 0.16) }
 	...
 />
 ```
